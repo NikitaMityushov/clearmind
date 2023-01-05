@@ -75,3 +75,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "clearmind"
 include ':app'
+include ':data-openai'
