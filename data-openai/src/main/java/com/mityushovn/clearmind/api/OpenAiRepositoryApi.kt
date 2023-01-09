@@ -7,4 +7,3 @@ interface OpenAiRepositoryApi {
     fun getCodeCompletion(text: String): Flow<String>
     fun getEditCompletion(text: String): Flow<String>
 }
-

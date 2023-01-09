@@ -1,14 +1,16 @@
 package com.mityushovn.clearmind.internal
 
 import com.mityushovn.clearmind.internal.apis.OpenAiRetrofitService
+import io.mockk.every
+import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.impl.annotations.MockK
+import io.mockk.junit4.MockKRule
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
-
+import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 
 internal class OpenAiRepositoryImplTest {
 
@@ -23,15 +25,20 @@ internal class OpenAiRepositoryImplTest {
         private const val TEST_EDIT_RESPONSE = "опечатка"
     }
 
-    private var api: OpenAiRetrofitService = mock()
-    private lateinit var repository: OpenAiRepositoryImpl
+    @get: Rule
+    val rule = MockKRule(this)
+
+    @MockK
+    lateinit var api: OpenAiRetrofitService
+
+    @InjectMockKs
+    lateinit var repository: OpenAiRepositoryImpl
 
     @Before
     fun setUp() {
-        whenever(api.getTextCompletion(TEST_TEXT_REQUEST)).thenReturn(flow { emit(TEST_TEXT_RESPONSE) })
-        whenever(api.getCodeCompletion(TEST_CODE_REQUEST)).thenReturn(flow { emit(TEST_CODE_RESPONSE) })
-        whenever(api.getEdit(TEST_EDIT_REQUEST)).thenReturn(flow { emit(TEST_EDIT_RESPONSE) })
-        repository = OpenAiRepositoryImpl(api)
+        every { api.getTextCompletion(TEST_TEXT_REQUEST) } answers { flow { emit(TEST_TEXT_RESPONSE) } }
+        every { api.getCodeCompletion(TEST_CODE_REQUEST) } answers { flow { emit(TEST_CODE_RESPONSE) } }
+        every { api.getEdit(TEST_EDIT_REQUEST) } answers { flow { emit(TEST_EDIT_RESPONSE) } }
     }
 
     @Test

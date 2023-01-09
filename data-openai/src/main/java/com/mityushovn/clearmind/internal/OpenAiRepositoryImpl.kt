@@ -4,7 +4,7 @@ import com.mityushovn.clearmind.api.OpenAiRepositoryApi
 import com.mityushovn.clearmind.internal.apis.OpenAiRetrofitService
 import kotlinx.coroutines.flow.Flow
 
-class OpenAiRepositoryImpl(
+internal class OpenAiRepositoryImpl(
     private val api: OpenAiRetrofitService
 ) : OpenAiRepositoryApi {
     override fun getTextCompletion(text: String): Flow<String> = api.getTextCompletion(text)

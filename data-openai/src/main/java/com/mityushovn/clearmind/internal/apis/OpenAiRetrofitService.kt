@@ -14,7 +14,7 @@ private const val EMPTY_STRING = ""
 // TODO:
 private const val BASE_URL = "localhost:8080"
 
-interface OpenAiRetrofitService {
+internal interface OpenAiRetrofitService {
     @GET("completion/texts")
     fun getTextCompletion(@Query("text") text: String = EMPTY_STRING): Flow<String>
 

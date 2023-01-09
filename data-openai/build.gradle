@@ -4,7 +4,8 @@ plugins {
 }
 
 android {
-    namespace 'com.mityushovn.clearmind'
+    namespace 'com.mityushovn.clearmind.data_openai'
+
     compileSdk 33
 
     defaultConfig {
@@ -13,20 +14,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
     }
 }
 
@@ -38,6 +25,9 @@ dependencies {
     implementation(libs.retrofit2.gson)
     implementation(libs.retrofit2.flow)
     // testing
-    implementation(libs.mockk)
-    implementation(libs.mockk.android)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    // coroutines
+    implementation(libs.coroutines.android)
+    testImplementation(libs.coroutines.test)
 }
