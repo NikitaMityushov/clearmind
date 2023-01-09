@@ -37,4 +37,7 @@ dependencies {
     implementation(libs.retrofit2.retrofit)
     implementation(libs.retrofit2.gson)
     implementation(libs.retrofit2.flow)
+    // testing
+    implementation(libs.mockk)
+    implementation(libs.mockk.android)
 }

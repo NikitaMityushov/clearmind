@@ -27,6 +27,8 @@ dependencyResolutionManagement {
             // 3) Testing libraries
             library("junit", "junit:junit:4.12.2")
             library("mockito", "org.mockito.kotlin:mockito-kotlin:3.2.0")
+            library("mockk", "io.mockk:mockk:1.13.3")
+            library("mockk-android", "io.mockk:mockk-android:1.13.3")
             library("android-arch-core-testing", "androidx.arch.core:core-testing:2.1.0")
             library("android-core-splashscreen", "androidx.core:core-splashscreen:1.0.0-beta02")
             library("androidx-junit-ext", "androidx.test.ext:junit:1.1.4")

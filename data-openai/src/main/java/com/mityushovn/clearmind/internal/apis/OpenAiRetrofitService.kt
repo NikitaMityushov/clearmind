@@ -6,17 +6,23 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 import tech.thdev.network.flowcalladapterfactory.FlowCallAdapterFactory
 
 private const val EMPTY_STRING = ""
 
 // TODO:
-private const val BASE_URL = ""
+private const val BASE_URL = "localhost:8080"
 
-internal interface OpenAiRetrofitService {
-    @GET("completion")
-    fun getCompletion(@Path("text") text: String = EMPTY_STRING): Flow<String>
+interface OpenAiRetrofitService {
+    @GET("completion/texts")
+    fun getTextCompletion(@Query("text") text: String = EMPTY_STRING): Flow<String>
+
+    @GET("completion/code")
+    fun getCodeCompletion(@Query("text") text: String = EMPTY_STRING): Flow<String>
+
+    @GET("edit")
+    fun getEdit(@Query("input") input: String = EMPTY_STRING): Flow<String>
 
     /*
         factory method
